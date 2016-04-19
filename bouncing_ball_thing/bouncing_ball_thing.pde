@@ -23,7 +23,10 @@ void draw() {
   fill(90,90,255);
   noStroke();
   ellipse(x, y, 20, 20);
-
+  for(int i = 0; i < 3; i++){
+    fill(90,255,90);
+    ellipse(x+sin(t+(2*i)*PI/3)*30,y+cos(t+(2*i)*PI/3)*30, 15-(i*2), 15-(i*2));
+  }
   x += xvel;
   y += yvel;
   yvel += 0.1;
