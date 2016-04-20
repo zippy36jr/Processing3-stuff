@@ -57,10 +57,10 @@ void draw() {
   }
   //player1 controls
   if (keyPressed) {
-    if (key == 'w' && p1y > 5) {
+    if ((key == 'w' || key == 'W') && p1y > 5) {
       keys[0] = 1;
     }
-    if (key == 's' && p1y < 245) {
+    if ((key == 's' || key == 'S') && p1y < 245) {
       keys[1] = 1;
     }
   }
