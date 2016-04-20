@@ -6,13 +6,14 @@ float bx = 0;
 float by = 0;
 float xvel = 0;
 float yvel = 0;
+float bounceSpeed = 1.3; //Speed that it ceom off the paddle
 color ballColor = color(255, 255, 255);
 color winColor = color(255, 255, 255);
 String winner = "";
-int paddleSpeed = 6;
+int paddleSpeed = 8; // How fast the paddle moves
 int blueScore = 0;
 int redScore = 0;
-int winScore = 5;
+int winScore = 5; // The max score
 int[] keys = new int[4];
 
 void setup() {
@@ -43,7 +44,7 @@ void draw() {
   yvel += 0;
   xvel += 0;
   if (by >= height) {
-    yvel = -yvel*0.85;
+    yvel = -yvel*1.01;
     by = height;
   }
   if (by <= 0) {
@@ -101,14 +102,16 @@ void draw() {
 
   if (bx < 32.5 && by > p1y && by < p1y+50) {
     bx = 32.5;
-    xvel = -xvel*1.1;
+    xvel = -xvel*bounceSpeed;
     yvel = random(-2, 2);
+    print("Red Hit:Vecl="+abs(xvel)+"\n");
   }
 
   if (bx > width-32.5 && by > p2y && by < p2y+50) {
     bx = width-32.5;
-    xvel = -xvel*1.1;
+    xvel = -xvel*bounceSpeed;
     yvel = random(-2, 2);
+    print("Blue Hit:Vecl="+abs(xvel)+"\n");
   }
 
 
@@ -119,6 +122,7 @@ void draw() {
     by = height/2;
     xvel = random(-1, 1);
     yvel = random(-2, 2);
+    print("Blue Score +1 \n");
   }
   if (bx >= width - 14) {
     redScore +=1;
@@ -126,6 +130,7 @@ void draw() {
     by = height/2;
     xvel = random(-1, 1);
     yvel = random(-2, 2);
+    print("Red Score +1 \n");
   }
   if (abs(xvel) <= 1) {
     xvel = xvel/abs(xvel)*2;
@@ -139,6 +144,8 @@ void draw() {
     bx = width/2;
     by = height/2;
     ballColor = color(255, 255, 255);
+    print("Red Wins \n");
+    exit();
   }
   if (blueScore == winScore) {
     winColor = color(0, 0, 255);
@@ -148,6 +155,8 @@ void draw() {
     bx = width/2;
     by = height/2;
     ballColor = color(255, 255, 255);
+    print("Blue Wins \n");
+    exit();
   }
 }
 
