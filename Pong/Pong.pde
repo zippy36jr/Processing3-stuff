@@ -1,6 +1,6 @@
-float p1x = 0;
+float p1x = 15;
 float p1y = 5;
-float p2x = 0;
+float p2x = width-25;
 float p2y = 5;
 float bx = 0;
 float by = 0;
@@ -93,6 +93,18 @@ void draw() {
   text(""+redScore, width/2-35, 15);
   fill(0, 0, 255);
   text(""+blueScore, width/2+35, 15);
+
+ if(bx < 32.5 && by > p1y && by < p1y+50){
+    bx = 32.5;
+    xvel = -xvel;
+  }
+
+if(bx > width-32.5 && by > p2y && by < p2y+50){
+    bx = width-32.5;
+    xvel = -xvel;
+  }
+
+
 
   if (bx <= 14) {
     blueScore +=1;
