@@ -7,7 +7,9 @@ float by = 0;
 float xvel = 0;
 float yvel = 0;
 color ballColor = color(255, 255, 255);
-int paddleSpeed = 5;
+color winColor = color(255,255,255);
+String winner = "";
+int paddleSpeed = 6;
 int blueScore = 0;
 int redScore = 0;
 int[] keys = new int[4];
@@ -93,15 +95,19 @@ void draw() {
   text(""+redScore, width/2-35, 15);
   fill(0, 0, 255);
   text(""+blueScore, width/2+35, 15);
+  fill(winColor);
+  text(""+winner, width/2, height/2);
 
  if(bx < 32.5 && by > p1y && by < p1y+50){
     bx = 32.5;
-    xvel = -xvel;
+    xvel = -xvel*1.1;
+    yvel = random(-2,2);
   }
 
 if(bx > width-32.5 && by > p2y && by < p2y+50){
     bx = width-32.5;
-    xvel = -xvel;
+    xvel = -xvel*1.1;
+    yvel = random(-2,2);
   }
 
 
@@ -122,6 +128,25 @@ if(bx > width-32.5 && by > p2y && by < p2y+50){
   }
   if (abs(xvel) <= 1) {
     xvel = xvel/abs(xvel)*2;
+  }
+  
+  if(redScore == 5){
+    winColor = color(255,0,0);
+    winner = "Red Wins";
+    xvel = 0;
+    yvel = 0;
+    bx = width/2;
+    by = height/2;
+    ballColor = color(255,255,255);
+  }
+  if(blueScore == 5){
+    winColor = color(0,0,255);
+    winner = "Blue Wins";
+    xvel = 0;
+    yvel = 0;
+    bx = width/2;
+    by = height/2;
+    ballColor = color(255,255,255);
   }
 }
 
